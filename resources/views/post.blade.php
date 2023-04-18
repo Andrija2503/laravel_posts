@@ -1,5 +1,5 @@
 @php
-    use \App\Http\Controllers\PostController;
+    
 @endphp
 
 @section('title')
@@ -20,7 +20,7 @@
             
                 <div class="card-action">
                     <a href="#">{{$post->autor}}</a>
-                    <a href="#" class="right">{{PostController::convert($post->created_at)}}</a>
+                    <a href="#" class="right">{{convert($post->created_at)}}</a>
                     <a href="/post/{{$post->id}}/edit">Edit post</a>
                     <a href="/post/{{$post->id}}/delete">Delete post</a>
                 </div>
