@@ -8,7 +8,7 @@
     <ul>
         
         @foreach ($latestPosts as $post)
-            <a href="/post/{{$post->id}}">Post by {{$post->autor}} |</a>
+            <a href="/post/{{$post->id}}">Post by {{$post->user->name}} |</a>
         @endforeach
        
     </ul>
