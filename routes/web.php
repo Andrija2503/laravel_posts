@@ -15,3 +15,5 @@ Route::put('/post/{post}/edit','App\Http\Controllers\PostController@update');
 Route::get('/post/{id}/delete','App\Http\Controllers\PostController@delete');
 
 Route::get('/users','App\Http\Controllers\UsersController@index');
+Route::get('/user/{user}','App\Http\Controllers\UsersController@destroy');
+Route::get('/user/{user}/posts','App\Http\Controllers\UsersController@posts');

@@ -19,6 +19,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Created</th>
+                            <th>Posts</th>
                         </tr>
                 </thead>
                 <tbody>
@@ -28,6 +29,8 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->created_at }}</td>
+                        <td><a href="/user/{{$user->id}}/posts" class="btn">Posts</a></td>
+                        <td><a href="/user/{{$user->id}}" class="btn">Delete</a></td>
                     </tr>  
                     @endforeach
                 </tbody>
