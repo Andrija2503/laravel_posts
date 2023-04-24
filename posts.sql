@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 17, 2023 at 08:03 PM
+-- Generation Time: Apr 24, 2023 at 01:12 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.2.0
 
@@ -111,23 +111,22 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
 DROP TABLE IF EXISTS `posts`;
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `autor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`id`),
+  KEY `posts_user_id_foreign` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `body`, `autor`, `created_at`, `updated_at`) VALUES
-(4, '4th Post', 'Lorem ipsum4', 'Ivance', '2023-04-17 15:43:53', '2023-04-17 15:57:23'),
-(5, 'Peka haker3', 'Lorem ipsum Peka', 'Peka', '2023-04-17 16:04:21', '2023-04-17 17:54:49'),
-(6, 'Andrija title', 'lorem ipsum andrija', 'Andrija', '2023-04-17 16:41:21', '2023-04-17 16:41:21'),
-(8, 'Janko title', 'Lorem Janko', 'Janko edit', '2023-04-17 17:47:41', '2023-04-17 17:51:07');
+INSERT INTO `posts` (`id`, `user_id`, `title`, `body`, `created_at`, `updated_at`) VALUES
+(4, 2, 'Incidunt occaecati et suscipit sequi nihil ut aliquam dolores.', 'Odit vitae quia non occaecati ex fugiat ad.', '2023-04-24 11:03:09', '2023-04-24 11:03:09'),
+(5, 2, 'Repellendus quae cupiditate et non dolorem at saepe.', 'Culpa mollitia et minima ducimus accusantium qui sapiente.', '2023-04-24 11:03:10', '2023-04-24 11:03:10');
 
 -- --------------------------------------------------------
 
@@ -147,7 +146,24 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'Ms. Melody Blanda I', 'yazmin85@example.org', '2023-04-24 11:00:10', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'CigotcHuUw', '2023-04-24 11:00:10', '2023-04-24 11:00:10');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
